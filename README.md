@@ -1,4 +1,6 @@
-# MinecraftPE 多平台移植 · 带脚本模组系统
+# MCCE —— 多平台移植 + 脚本模组系统
+
+> **MCCE** = MinecraftPE Community Edition
 
 Minecraft Pocket Edition 的 C++ 引擎，从 **0.6.1 的泄露源码**起步，UI 层后来换成了 **0.8.1** 的界面。
 现在能跑在 **Windows / Android / 独立服务器**三个平台上 —— 三端共用同一套引擎源码，
