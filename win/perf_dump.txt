@@ -1,0 +1,21 @@
+[frame] averages over 120 frames (F3 open)
+frame_ms=29.61  update_ms=25.92  visible_chunks=551  rebuilt_per_frame=3.4  dirty_queue=1398  dirty_marks_per_frame=1.4  dirty_calls_per_frame=1.00  newchunk_per_frame=0.1
+  cull           0.55 ms
+  rebuildImpl    6.73 ms
+  dirtySort      0.03 ms
+  dirtyLoop      6.70 ms
+  meshPrefetch   0.99 ms
+  meshTess       0.64 ms
+  meshUpload     0.01 ms
+  terrainLayer0  0.36 ms
+  terrainLayer1  0.12 ms
+  terrainLayer2  0.09 ms
+  terrainLayer3  0.08 ms
+  entities       0.16 ms
+  particles      0.00 ms
+  hand           0.01 ms
+  gui            2.35 ms
+  tick           11.38 ms
+  updateLights   3.54 ms
+  meshSetup      0.03 ms
+  chunkRebuild   1.68 ms

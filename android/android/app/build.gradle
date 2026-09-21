@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.reconnern.mcpe'
+    compileSdk 35
+
+    ndkPath 'H:\\workerspace\\ad\\ndk\\android-ndk-r27b'
+    // 必须与 ndkPath 指向的 NDK 版本一致，否则 AGP 报 CXX1100
+    ndkVersion '27.1.12297006'
+
+    defaultConfig {
+        applicationId "com.reconnern.mcpe"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "0.8.1"
+
+        ndk {
+            // 真机主流 ABI。需要模拟器可再加 x86_64。
+            abiFilters 'arm64-v8a', 'armeabi-v7a'
+        }
+        externalNativeBuild {
+            ndkBuild {
+                // 关键：显式要求 release 优化（-O2）。AGP 默认在 debug 构建里给
+                // ndk-build 传 NDK_DEBUG=1，会把优化降成 -O0 -g —— 实测帧数直接
+                // 撟一半以上。NDK_DEBUG=0 + APP_OPTIM=release 把优化等级要回来。
+                arguments 'APP_PLATFORM=android-21', 'APP_OPTIM=release', 'NDK_DEBUG=0'
+            }
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'jni/Android.mk'
+        }
+    }
+
+    sourceSets {
+        main {
+            // 游戏资源直接复用 handheld/data（不复制一份）；
+            // src/main/assets 用于放内置模组（assets/mods）。
+            // 必须两者都显式列出：用 += 时默认的 src/main/assets 会被丢掉。
+            assets.srcDirs = ['src/main/assets', '../../handheld/data']
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            // 关掉 jni 调试：否则 AGP 会向 ndk-build 传 NDK_DEBUG=1，
+            // 原生代码退化成 -O0 -g（带满调试段），性能损失极大。
+            jniDebuggable false
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
+    buildFeatures {
+        buildConfig = false
+    }
+}

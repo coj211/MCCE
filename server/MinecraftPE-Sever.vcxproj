@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>MinecraftPE-Sever</ProjectName>
+    
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)build\Debug\</OutDir>
+    <IntDir>$(ProjectDir)build\obj\Debug\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)build\Release\</OutDir>
+    <IntDir>$(ProjectDir)build\obj\Release\</IntDir>
+  </PropertyGroup>
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\MinecraftPE-Win\handheld\lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\MinecraftPE-Win\handheld\lib\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\MinecraftPE-Win\handheld\lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\MinecraftPE-Win\handheld\lib\lib;$(LibraryPath)</LibraryPath>
+    <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+<AdditionalIncludeDirectories>$(ProjectDir)..\MinecraftPE-Win\handheld\src;$(ProjectDir)..\MinecraftPE-Win\handheld\thirdparty\OpenAL;$(ProjectDir)..\MinecraftPE-Win\handheld\src\gui08\include;$(ProjectDir)..\MinecraftPE-Win\handheld\src\gui08;$(ProjectDir)..\MinecraftPE-Win\handheld\src\raknet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;_CONSOLE;STANDALONE_SERVER;_RAKNET_SUPPORT_NatPunchthroughClient=0;_RAKNET_SUPPORT_NatPunchthroughServer=0;_RAKNET_SUPPORT_NatTypeDetectionClient=0;_RAKNET_SUPPORT_NatTypeDetectionServer=0;_RAKNET_SUPPORT_Router2=0;_RAKNET_SUPPORT_UDPProxyClient=0;_RAKNET_SUPPORT_UDPProxyCoordinator=0;_RAKNET_SUPPORT_UDPProxyServer=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\MinecraftPE-Win\handheld\thirdparty\OpenAL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EntryPoint>mainCRTStartup</EntryPoint>
+      <AdditionalDependencies>ws2_32.lib;libegl.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;imm32.lib;libpng.lib;zlib.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+<AdditionalIncludeDirectories>$(ProjectDir)..\MinecraftPE-Win\handheld\src;$(ProjectDir)..\MinecraftPE-Win\handheld\thirdparty\OpenAL;$(ProjectDir)..\MinecraftPE-Win\handheld\src\gui08\include;$(ProjectDir)..\MinecraftPE-Win\handheld\src\gui08;$(ProjectDir)..\MinecraftPE-Win\handheld\src\raknet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;STANDALONE_SERVER;_RAKNET_SUPPORT_NatPunchthroughClient=0;_RAKNET_SUPPORT_NatPunchthroughServer=0;_RAKNET_SUPPORT_NatTypeDetectionClient=0;_RAKNET_SUPPORT_NatTypeDetectionServer=0;_RAKNET_SUPPORT_Router2=0;_RAKNET_SUPPORT_UDPProxyClient=0;_RAKNET_SUPPORT_UDPProxyCoordinator=0;_RAKNET_SUPPORT_UDPProxyServer=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\MinecraftPE-Win\handheld\thirdparty\OpenAL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EntryPoint>mainCRTStartup</EntryPoint>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <Profile>false</Profile>
+      <AdditionalDependencies>ws2_32.lib;libegl.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;imm32.lib;libpng.lib;zlib.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\AppPlatform_win32.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\mod\ModEngine.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\mod\ModZip.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\mod\stb_vorbis.c" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\thirdparty\duktape\duktape.c" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\gamemode\CreatorMode.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\gamemode\GameMode.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\gamemode\CreativeMode.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\gamemode\SurvivalMode.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\IConfigListener.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\Minecraft.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\Options.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\OptionsFile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\OptionStrings.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\player\LocalPlayer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\client\player\RemotePlayer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\platform\audio\SoundSystemAL.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\locale\I18n.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\nbt\Tag.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\network\NATPunchHandler.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\network\command\CommandServer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\network\NetEventCallback.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\network\Packet.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\network\PHPDirectoryServer2.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\network\RakNetInstance.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\network\ServerSideNetworkHandler.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\NinecraftApp.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\Performance.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\platform\CThread.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\platform\input\Controller.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\platform\input\Keyboard.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\platform\input\Mouse.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\platform\input\Multitouch.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\platform\time.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\BitStream.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\CCRakNetSlidingWindow.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\CCRakNetUDT.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\CheckSum.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\CloudClient.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\CloudCommon.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\CloudServer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\CommandParserInterface.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\ConnectionGraph2.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\ConsoleServer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\DataCompressor.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\DirectoryDeltaTransfer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\DS_BytePool.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\DS_ByteQueue.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\DS_HuffmanEncodingTree.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\DS_Table.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\DynDNS.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\EmailSender.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\EncodeClassName.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\EpochTimeToString.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\FileList.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\FileListTransfer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\FileOperations.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\FormatString.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\FullyConnectedMesh2.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\Getche.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\Gets.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\GetTime.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\gettimeofday.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\GridSectorizer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\HTTPConnection.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\IncrementalReadInterface.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\Itoa.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\LinuxStrings.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\LocklessTypes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\LogCommandParser.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\MessageFilter.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\NatPunchthroughClient.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\NatPunchthroughServer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\NatTypeDetectionClient.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\NatTypeDetectionCommon.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\NatTypeDetectionServer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\NetworkIDManager.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\NetworkIDObject.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\PacketConsoleLogger.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\PacketFileLogger.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\PacketizedTCP.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\PacketLogger.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\PacketOutputWindowLogger.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\PluginInterface2.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakMemoryOverride.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakNetCommandParser.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakNetSocket.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakNetStatistics.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakNetTransport2.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakNetTypes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakPeer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakSleep.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakString.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakThread.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RakWString.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\Rand.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\rdlmalloc.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\ReadyEvent.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\ReliabilityLayer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\ReplicaManager3.cpp" />
+    <!-- Router2.cpp / UDPForwarder.cpp excluded: NAT punchthrough unused and
+         does not compile with RAKNET_SUPPORT_IPV6==1 (old RakNet OrderedList
+         API). Direct connect / LAN play do not need them. -->
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\RPC4Plugin.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\SecureHandshake.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\SendToThread.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\SHA1.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\SignaledEvent.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\SimpleMutex.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\SocketLayer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\StringCompressor.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\StringTable.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\SuperFastHash.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\TableSerializer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\TCPInterface.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\TeamBalancer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\TelnetTransport.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\ThreadsafePacketLogger.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\TwoWayAuthentication.cpp" />
+    <!-- UDPForwarder.cpp excluded: unused (no NAT punchthrough) and does not
+         compile with RAKNET_SUPPORT_IPV6==1 (old RakNet OrderedList API). -->
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\UDPProxyClient.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\UDPProxyCoordinator.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\UDPProxyServer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\VariableDeltaSerializer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\VariableListDeltaTracker.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\VariadicSQLParser.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\WSAStartupSingleton.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\raknet\_FindFirst.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\server\ServerLevel.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\server\ServerPlayer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\SharedConstants.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\util\DataIO.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\util\Mth.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\util\StringUtils.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\util\PerfTimer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\Direction.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\AgableMob.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\ai\control\MoveControl.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\Animal.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\Chicken.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\Cow.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\Pig.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\Sheep.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\WaterAnimal.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\Entity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\EntityFactory.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\FlyingMob.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\HangingEntity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\item\FallingTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\item\ItemEntity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\item\PrimedTnt.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\item\TripodCamera.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\Mob.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\MobCategory.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\monster\Creeper.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\monster\ScriptedMob.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\monster\Monster.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\monster\PigZombie.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\monster\Skeleton.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\monster\Spider.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\monster\Zombie.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\Motive.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\Painting.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\PathFinderMob.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\player\Inventory.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\player\Player.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\projectile\Arrow.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\projectile\Throwable.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\entity\SynchedEntityData.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\food\SimpleFoodData.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\inventory\BaseContainerMenu.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\inventory\ContainerMenu.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\inventory\FillingContainer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\inventory\FurnaceMenu.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\ArmorItem.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\BedItem.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\crafting\ArmorRecipes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\crafting\FurnaceRecipes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\crafting\OreRecipes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\crafting\Recipe.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\crafting\Recipes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\crafting\StructureRecipes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\crafting\ToolRecipes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\crafting\WeaponRecipes.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\DyePowderItem.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\HangingEntityItem.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\HatchetItem.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\HoeItem.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\Item.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\ItemInstance.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\PickaxeItem.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\item\ShovelItem.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\biome\Biome.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\biome\BiomeSource.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\chunk\LevelChunk.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\dimension\Dimension.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\Explosion.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\Level.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\CanyonFeature.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\DungeonFeature.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\Feature.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\LargeCaveFeature.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\LargeFeature.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\RandomLevelSource.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\ScriptedChunkSource.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\dimension\ScriptedDimension.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\synth\ImprovedNoise.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\synth\PerlinNoise.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\synth\Synth.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\LightLayer.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\LightUpdate.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\material\Material.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\MobSpawner.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\pathfinder\Path.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\Region.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\storage\ExternalFileLevelStorage.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\storage\ExternalFileLevelStorageSource.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\storage\FolderMethods.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\storage\LevelData.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\storage\LevelStorageSource.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\storage\RegionFile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\TickNextTickData.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\BedTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\ChestTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\CropTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\DoorTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\EntityTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\entity\ChestTileEntity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\entity\FurnaceTileEntity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\entity\ModTileEntity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\entity\NetherReactorTileEntity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\entity\SignTileEntity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\entity\TileEntity.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\FurnaceTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\GrassTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\HeavyTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\LightGemTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\MelonTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\ModTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\Mushroom.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\NetherReactor.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\NetherReactorPattern.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\StairTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\StemTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\StoneSlabTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\TallGrass.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\Tile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\level\tile\TrapDoorTile.cpp" />
+    <ClCompile Include="..\MinecraftPE-Win\handheld\src\world\phys\HitResult.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\App.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gamemode\GameMode.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\components\Button.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\components\RolledSelectionList.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\components\ScrolledSelectionList.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\components\SmallButton.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\Font.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\ChatScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\ConfirmScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\IngameBlockSelectionScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\JoinGameScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\AddServerScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\OptionsScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\LanguageScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\ProgressScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\RenameMPLevelScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\SelectWorldScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\StartMenuScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\gui\screens\UploadPhotoScreen.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\KeyMapping.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\Minecraft.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\model\Cube.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\model\HumanoidModel.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\model\Model.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\model\Polygon.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\model\Vertex.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\MouseHandler.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\Options.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\particle\Particle.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\particle\ParticleEngine.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\particle\ParticleInclude.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\particle\TerrainParticle.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\player\Input.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\player\KeyboardInput.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\player\LocalPlayer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\player\TurnInput.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\Chunk.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\ChunkRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\culling\AllowAllCuller.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\culling\Culler.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\culling\Frustum.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\culling\FrustumCuller.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\culling\FrustumData.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\DirtyChunkSorter.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\DistanceChunkSorter.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\entity\EntityRenderDispatcher.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\entity\EntityRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\entity\HumanoidMobRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\entity\ItemRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\entity\ItemSpriteRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\entity\MobRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\entity\TntRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\GameRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\gles.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\LevelRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\RenderChunk.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\RenderList.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\Tesselator.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\Textures.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\TileRenderer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\renderer\VertecDecl.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\Timer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\client\User.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\main_android.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\main_win32.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\NinecraftApp.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\Performance.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\platform\input\Controller.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\platform\input\Keyboard.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\platform\input\Mouse.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\platform\time.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\util\IntHashMap.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\util\Mth.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\util\Random.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\util\SmoothFloat.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\util\StringUtils.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\Direction.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\Animal.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\Cow.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\animal\Pig.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\Creature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\Entity.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\EntityPos.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\item\FallingTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\item\ItemEntity.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\item\PrimedTnt.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\Mob.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\PathfinderMob.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\player\Inventory.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\player\InventorySlotManager.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\entity\player\Player.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\Facing.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\item\DoorItem.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\item\Item.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\item\ItemInstance.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\item\TileItem.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\item\TilePlanterItem.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\item\TreeTileItem.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\biome\Biome.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\biome\BiomeInclude.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\biome\BiomeSource.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\biome\FlatBiome.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\biome\ForestBiome.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\biome\RainforestBiome.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\biome\SwampBiome.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\biome\TaigaBiome.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\ChunkPos.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\chunk\ChunkCache.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\chunk\ChunkSource.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\chunk\DataLayer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\chunk\EmptyLevelChunk.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\chunk\LevelChunk.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\chunk\storage\ChunkStorage.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\chunk\storage\MemoryChunkStorage.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\dimension\Dimension.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\dimension\HellDimension.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\dimension\NormalDimension.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\Explosion.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\Level.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\CanyonFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\DungeonFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\BirchFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\ClayFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\Feature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\FeatureInclude.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\FlowerFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\LakeFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\OreFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\PineFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\ReedsFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\SpringFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\SpruceFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\feature\TreeFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\LargeCaveFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\LargeFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\RandomLevelSource.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\SimpleLevelSource.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\synth\ImprovedNoise.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\synth\PerlinNoise.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\synth\Synth.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\levelgen\TownFeature.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\LevelListener.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\LevelSource.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\LightLayer.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\material\DecorationMaterial.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\material\GasMaterial.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\material\LiquidMaterial.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\material\Material.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\pathfinder\BinaryHeap.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\pathfinder\Node.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\pathfinder\Path.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\pathfinder\PathFinder.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\Region.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\storage\LevelData.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\storage\LevelStorage.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\storage\LevelStorageSource.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\storage\MemoryLevelStorage.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\storage\MemoryLevelStorageSource.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\storage\RegionFile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\TickNextTickData.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\TilePos.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\Bush.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\ClayTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\DirtTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\DoorTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\FarmTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\FireTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\GrassTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\GravelTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\HalfTransparentTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\IceTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\LadderTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\LeafTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\LiquidTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\LiquidTileDynamic.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\LiquidTileStatic.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\MetalTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\ObsidianTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\OreTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\RedStoneOreTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\ReedTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\SandTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\StairTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\StoneSlabTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\StoneTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\Tile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\TileInclude.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\TntTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\TorchTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\TransparentTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\level\tile\TreeTile.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\phys\AABB.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\phys\HitResult.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\phys\Vec3.h" />
+    <ClInclude Include="..\MinecraftPE-Win\handheld\src\world\Pos.h" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ItemGroup>
+    <ClCompile Include="src\PlayerStore.cpp" />
+    <ClCompile Include="src\PluginEngine.cpp" />
+    <ClCompile Include="src\ServerApp.cpp" />
+    <ClCompile Include="src\ServerConfig.cpp" />
+    <ClCompile Include="src\main_server.cpp" />
+  </ItemGroup>
+</Project>

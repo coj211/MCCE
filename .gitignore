@@ -1,0 +1,24 @@
+# 构建产物
+build/
+obj/
+.cxx/
+.gradle/
+Release/
+Debug/
+*.o
+*.a
+*.so
+*.dll.bak_*
+*.pdb
+*.ilk
+*.log
+*.exe.bak_*
+*.suo
+
+# 本地配置
+local.properties
+
+# 世界存档 / 服务器运行时数据
+games/
+world/
+logs/

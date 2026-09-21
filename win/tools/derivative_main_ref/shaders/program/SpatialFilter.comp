@@ -1,0 +1,160 @@
+
+layout (local_size_x = 8, local_size_y = 8) in;
+const vec2 workGroupsRender = vec2(0.5, 0.5);
+
+shared vec4 sharedLight[10][10];
+shared vec4 sharedPrevData[10][10];
+
+layout (rgba16f) uniform image2D colorimg0;
+
+//----------------------------------------------------------------------------//
+
+uniform sampler2D depthtex0;
+
+uniform float viewWidth;
+
+uniform mat4 gbufferProjectionInverse;
+uniform mat4 gbufferModelViewInverse;
+
+uniform vec2 screenPixelSize;
+uniform vec2 screenSize;
+uniform vec2 taaOffset;
+
+#include "/lib/Head/Common.inc"
+
+//----// FUNCTIONS //-----------------------------------------------------------------------------//
+
+vec3 ScreenToViewSpace(in vec3 screenPos) {
+	vec3 NDCPos = screenPos * 2.0 - 1.0;
+	#ifdef TAA_ENABLED
+		NDCPos.xy -= taaOffset;
+	#endif
+	vec3 viewPos = projMAD(gbufferProjectionInverse, NDCPos);
+	     viewPos /= gbufferProjectionInverse[2].w * NDCPos.z + gbufferProjectionInverse[3].w;
+
+	return viewPos;
+}
+
+const ivec2 offset3x3N[8] = ivec2[8](
+    ivec2(-1, -1), ivec2(0, -1), ivec2(1, -1),
+    ivec2(-1,  0), 				 ivec2(1,  0),
+    ivec2(-1,  1), ivec2(0,  1), ivec2(1,  1)
+);
+
+void CollectSharedData() {
+    ivec2 sharedTexel = ivec2(gl_WorkGroupID) * 8 - 1;
+    ivec2 shift = ivec2(viewWidth * 0.5, 0);
+
+    // unroll the loop manually
+    uint i = gl_LocalInvocationIndex;
+    {
+        float fi = (float(i) + 0.5) * rcp(10.0);
+        int x = int(fract(fi) * 10.0);
+        int y = int(fi);
+
+        ivec2 sampleTexel = sharedTexel + ivec2(x, y);
+
+        sharedLight[y][x] = imageLoad(colorimg0, sampleTexel);
+        sharedPrevData[y][x] = imageLoad(colorimg0, sampleTexel + shift);
+    }
+    if(gl_LocalInvocationIndex < 36) {
+        float fi = (float(i + 64) + 0.5) * rcp(10.0);
+        int x = int(fract(fi) * 10.0);
+        int y = int(fi);
+
+        ivec2 sampleTexel = sharedTexel + ivec2(x, y);
+
+        sharedLight[y][x] = imageLoad(colorimg0, sampleTexel);
+        sharedPrevData[y][x] = imageLoad(colorimg0, sampleTexel + shift);
+    }
+}
+
+//----// MAIN //----------------------------------------------------------------------------------//
+void main() {
+	ivec2 texel = ivec2(gl_GlobalInvocationID.xy);
+
+    CollectSharedData();
+    barrier();
+
+	if (all(lessThan(texel, ceil(screenSize * 0.5)))) {
+        float depth = texelFetch(depthtex0, texel * 2, 0).x;
+        if (depth < 1.0) {
+            uvec2 sharedTexel = gl_LocalInvocationID.xy + 1;
+
+            vec4 indirectData = sharedLight[sharedTexel.y][sharedTexel.x];
+            vec4 normalDepthData = sharedPrevData[sharedTexel.y][sharedTexel.x];
+
+            // ivec2 shiftedTexel = texel + ivec2(viewWidth * 0.5, 0);
+
+            // vec4 normalDepthData = imageLoad(colorimg0, shiftedTexel);
+            // vec4 indirectData = imageLoad(colorimg0, texel);
+
+            // sharedLight[sharedTexel.x][sharedTexel.y] = indirectData;
+            // sharedPrevData[sharedTexel.x][sharedTexel.y] = normalDepthData;
+            // bool edgeBottom = gl_LocalInvocationID.y == 0u;
+            // bool edgeTop = gl_LocalInvocationID.y == 7u;
+            // if (gl_LocalInvocationID.x == 0u) {
+            //     sharedLight[0][sharedTexel.y] = imageLoad(colorimg0, texel + offset3x3N[3]);
+            //     sharedPrevData[0][sharedTexel.y] = imageLoad(colorimg0, shiftedTexel + offset3x3N[3]);
+            //     if (edgeBottom) {
+            //         sharedLight[0][0] = imageLoad(colorimg0, texel + offset3x3N[0]);
+            //         sharedPrevData[0][0] = imageLoad(colorimg0, shiftedTexel + offset3x3N[0]);
+            //     }
+            //     if (edgeTop) {
+            //         sharedLight[0][9] = imageLoad(colorimg0, texel + offset3x3N[5]);
+            //         sharedPrevData[0][9] = imageLoad(colorimg0, shiftedTexel + offset3x3N[5]);
+            //     }
+            // }
+            // if (gl_LocalInvocationID.x == 7u) {
+            //     sharedLight[9][sharedTexel.y] = imageLoad(colorimg0, texel + offset3x3N[4]);
+            //     sharedPrevData[9][sharedTexel.y] = imageLoad(colorimg0, shiftedTexel + offset3x3N[4]);
+            //     if (edgeBottom) {
+            //         sharedLight[9][0] = imageLoad(colorimg0, texel + offset3x3N[2]);
+            //         sharedPrevData[9][0] = imageLoad(colorimg0, shiftedTexel + offset3x3N[2]);
+            //     }
+            //     if (edgeTop) {
+            //         sharedLight[9][9] = imageLoad(colorimg0, texel + offset3x3N[7]);
+            //         sharedPrevData[9][9] = imageLoad(colorimg0, shiftedTexel + offset3x3N[7]);
+            //     }
+            // }
+            // if (edgeBottom) {
+            //     sharedLight[sharedTexel.x][0] = imageLoad(colorimg0, texel + offset3x3N[1]);
+            //     sharedPrevData[sharedTexel.x][0] = imageLoad(colorimg0, shiftedTexel + offset3x3N[1]);
+            // }
+            // if (edgeTop) {
+            //     sharedLight[sharedTexel.x][9] = imageLoad(colorimg0, texel + offset3x3N[6]);
+            //     sharedPrevData[sharedTexel.x][9] = imageLoad(colorimg0, shiftedTexel + offset3x3N[6]);
+            // }
+
+            vec3 viewPos = ScreenToViewSpace(vec3(gl_GlobalInvocationID.xy * screenPixelSize * 2.0, depth));
+            float NdotV = saturate(dot(normalDepthData.xyz, -normalize(viewPos)));
+
+            float sumWeight = 1.0;
+
+            for (uint i = 0u; i < 8u; ++i) {
+                ivec2 offset = offset3x3N[i];
+                // ivec2 sampleTexel = texel + offset;
+                // if (clamp(sampleTexel, ivec2(1), ivec2(screenSize * 0.5) - 1) != sampleTexel) continue;
+                uvec2 sampleSharedTexel = sharedTexel + offset;
+                //sampleTexel = clamp(sampleTexel, ivec2(1), ivec2(screenSize * 0.5) - 1);
+
+                //vec3 sampleNormal = GetNormals(sampleTexel * 2);
+                //float sampleDist = ScreenToViewSpace(GetDepthFix(sampleTexel * 2));
+                vec4 prevData = sharedPrevData[sampleSharedTexel.y][sampleSharedTexel.x];
+
+                float weight = exp2(-dotSelf(offset) * 0.05);
+                weight *= exp2(-abs(prevData.w - normalDepthData.w) * 4.0 * NdotV); // Distance weight
+                weight *= pow16(max0(dot(prevData.xyz, normalDepthData.xyz))); // Normal weight
+
+                vec4 sampleLight = sharedLight[sampleSharedTexel.y][sampleSharedTexel.x];
+
+                indirectData += sampleLight * weight;
+                sumWeight += weight;
+            }
+
+            indirectData /= sumWeight;
+            //indirectData = spatialLightFilter(normal, ScreenToViewSpace(depth), NdotV);
+            imageStore(colorimg0, texel, clamp16F(indirectData));
+        }
+    }
+}

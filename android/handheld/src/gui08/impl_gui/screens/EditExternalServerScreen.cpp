@@ -1,0 +1,178 @@
+#include <gui/screens/EditExternalServerScreen.hpp>
+#include <ExternalServerFile.hpp>
+#include <Minecraft.hpp>
+#include <gui/elements/Label.hpp>
+#include <gui/elements/TextBox.hpp>
+#include <gui/screens/PlayScreen.hpp>
+#include <rendering/Tesselator.hpp>
+#include <gui/NinePatchFactory.hpp>
+#include <gui/buttons/Touch_TButton.hpp>
+#include <util/IntRectangle.hpp>
+#include <stdlib.h>
+#include <sstream>
+
+EditExternalServerScreen::EditExternalServerScreen(const ExternalServer& a2)
+	: server(a2) {
+	this->isJavaServer = a2.isJava;
+}
+
+void EditExternalServerScreen::refreshJavaToggle() {
+	if(this->javaToggleButton) {
+		this->javaToggleButton->setMsg(this->isJavaServer ? "Java Server (1.8.x): YES"
+		                                                 : "Java Server (1.8.x): NO");
+	}
+	if(this->field_9C) {
+		this->field_9C->setText(this->isJavaServer
+			? "Edit a Minecraft Java Edition 1.8.x server. The default port is 25565."
+			: "Edit server by IP/Address.");
+	}
+}
+
+void EditExternalServerScreen::closeScreen() {
+	this->minecraft->setScreen(new PlayScreen(1));
+}
+
+EditExternalServerScreen::~EditExternalServerScreen() {
+}
+
+void EditExternalServerScreen::render(int32_t a2, int32_t a3, float a4) {
+	if(this->supppressedBySubWindow()) {
+		this->renderBackground(0);
+	} else {
+		this->renderMenuBackground(a4);
+		this->field_A4->draw(Tesselator::instance, 5, this->field_5C->height + 5);
+	}
+	Screen::render(a2, a3, a4);
+}
+
+void EditExternalServerScreen::init() {
+	this->field_5C = std::shared_ptr<Button>(new Touch::THeader(0, "Edit External Server"));
+	this->closeScreenButton = std::shared_ptr<Button>(new Touch::TButton(1, "Back", this->minecraft));
+	this->saveServerButton = std::shared_ptr<Button>(new Touch::TButton(2, "Save Server", this->minecraft));
+	this->closeScreenButton->width = 38;
+	this->closeScreenButton->height = 18;
+	
+	this->serverNameLabel = std::shared_ptr<Label>(new Label("Server Name", this->minecraft, -1, 0, 0, 0, 1));
+	const char* extAscii = TextBox::extendedAcsii ? TextBox::extendedAcsii : " !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+	this->serverNameTextBox = std::shared_ptr<TextBox>(new TextBox(this->minecraft, "Server Name", 16, extAscii, strlen(extAscii), 0, 0, 0, 0));
+	this->serverNameTextBox->setText(this->server.field_4);
+
+	this->addressLabel = std::shared_ptr<Label>(new Label("Address", this->minecraft, -1, 0, 0, 0, 1));
+	this->serverAddressTextBox = std::shared_ptr<TextBox>(new TextBox(this->minecraft, "Server Address", 256, extAscii, strlen(extAscii), 0, 0, 0, 0));
+	this->serverAddressTextBox->setText(this->server.field_8);
+
+	this->portLabel = std::shared_ptr<Label>(new Label("Port", this->minecraft, -1, 0, 0, 0, 1));
+	const char* numChars = TextBox::numberChars ? TextBox::numberChars : "0123456789";
+	this->field_94 = std::shared_ptr<TextBox>(new TextBox(this->minecraft, "Server Port", 6, numChars, strlen(numChars), 0, 0, 0, 0));
+	
+	std::stringstream ss;
+	ss << this->server.field_C;
+	this->field_94->setText(ss.str());
+
+	this->field_9C = std::shared_ptr<Label>(new Label("Edit server by IP/Address.", this->minecraft, -1, 0, 0, 0, 1));
+	this->javaToggleButton = std::shared_ptr<Button>(new Touch::TButton(3, "Java Server (1.8.x): NO", this->minecraft));
+	NinePatchFactory factory(this->minecraft->textures, "gui/spritesheet.png");
+	this->field_A4 = std::shared_ptr<NinePatchLayer>(factory.createSymmetrical(IntRectangle{34, 43, 14, 14}, 3, 3, 32, 32));
+	
+	this->buttons.emplace_back(this->field_5C.get());
+	this->buttons.emplace_back(this->closeScreenButton.get());
+	this->buttons.emplace_back(this->saveServerButton.get());
+	this->buttons.emplace_back(this->javaToggleButton.get());
+	
+	this->elements.emplace_back(this->serverNameLabel.get());
+	this->elements.emplace_back(this->serverNameTextBox.get());
+	this->elements.emplace_back(this->addressLabel.get());
+	this->elements.emplace_back(this->serverAddressTextBox.get());
+	this->elements.emplace_back(this->portLabel.get());
+	this->elements.emplace_back(this->field_94.get());
+	this->elements.emplace_back(this->field_9C.get());
+	this->refreshJavaToggle();
+}
+
+void EditExternalServerScreen::setupPositions() {
+	int32_t height; // r0
+	int32_t v4;		// r1
+	int32_t v5;		// r1
+	int32_t v6;		// r2
+
+	this->closeScreenButton->x = 4;
+	this->closeScreenButton->y = 4;
+	this->field_5C->x = 0;
+	this->field_5C->y = 0;
+	this->field_5C->width = this->width;
+	this->field_5C->height = this->closeScreenButton->height + 8;
+	height = this->field_5C->height;
+	this->serverNameLabel->x = 10;
+	v4 = height + 10;
+	height += 22;
+	this->serverNameLabel->y = v4;
+	this->serverNameTextBox->x = 10;
+	this->serverNameTextBox->y = height;
+	this->serverNameTextBox->width = this->width / 2 - 10;
+	v5 = height + this->serverNameTextBox->height + 8;
+	this->addressLabel->x = 10;
+	this->addressLabel->y = v5;
+	v5 += 10;
+	this->serverAddressTextBox->x = 10;
+	this->serverAddressTextBox->y = v5;
+	this->serverAddressTextBox->width = this->width / 2 - 10;
+	v6 = v5 + this->serverAddressTextBox->height + 8;
+	this->portLabel->x = 10;
+	this->portLabel->y = v6;
+	this->field_94->x = 10;
+	this->field_94->y = v6 + 10;
+	this->field_94->width = this->width / 2 - 10;
+	this->field_9C->x = this->width / 2 + 10;
+	this->field_9C->y = this->field_5C->height + 10;
+	this->field_9C->setWidth(this->width / 2 - 20);
+	this->field_9C->setupPositions();
+	this->javaToggleButton->x = this->width / 2 + 10;
+	this->javaToggleButton->y = this->field_9C->y + this->field_9C->height + 10;
+	this->javaToggleButton->width = this->width / 2 - 20;
+	this->saveServerButton->x = this->saveServerButton->width / -2 + 3 * ((this->width - 10) / 4);
+	this->saveServerButton->y = this->javaToggleButton->y + this->javaToggleButton->height + 14;
+	this->field_A4->setSize((float)this->width - 10.0, (float)(this->height - this->field_5C->height - 10));
+}
+
+bool_t EditExternalServerScreen::handleBackEvent(bool_t a2) {
+	if(!a2) {
+		bool_t v4 = 1;
+		for(auto&& e: this->elements) {
+			if(e->suppressOtherGUI()) {
+				v4 = 0;
+				e->backPressed(this->minecraft, 0);
+			}
+		}
+		if(v4) {
+			this->closeScreen();
+		}
+	}
+	return 1;
+}
+
+void EditExternalServerScreen::buttonClicked(Button* a2) {
+	if(a2 == this->closeScreenButton.get()) {
+		this->closeScreen();
+	} else if(a2 == this->javaToggleButton.get()) {
+		this->isJavaServer = !this->isJavaServer;
+		if(this->isJavaServer) {
+			if(this->field_94->text == "19132") {
+				this->field_94->setText("25565");
+			}
+		} else if(this->field_94->text == "25565") {
+			this->field_94->setText("19132");
+		}
+		this->refreshJavaToggle();
+		this->setupPositions();
+	} else if(a2 == this->saveServerButton.get()) {
+		long v3 = strtol(this->field_94->text.c_str(), 0, 0);
+		if(v3 > 0) {
+			if(this->serverNameTextBox->text.size()) {
+				if(this->serverAddressTextBox->text.size()) {
+					this->minecraft->externalServerFile->editServer(this->server.field_0, this->serverNameTextBox->text, this->serverAddressTextBox->text, v3, this->isJavaServer);
+					this->minecraft->setScreen(new PlayScreen(1));
+				}
+			}
+		}
+	}
+}

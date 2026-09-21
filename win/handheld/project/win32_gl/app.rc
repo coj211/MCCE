@@ -1,0 +1,5 @@
+// app.rc -- application icon resource (embedded into MinecraftWin32_GL.exe)
+// ID 1 must match MAKEINTRESOURCE(1) used in main_win32.h (wc.hIcon / WM_SETICON).
+#define IDI_ICON1 1
+
+IDI_ICON1 ICON "app.ico"

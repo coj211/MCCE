@@ -1,0 +1,71 @@
+{
+  "resource_pack_name": "M25403A1",
+  "texture_name": "atlas.items",
+  "texture_data": {
+// Grenade
+    "stickgrenade": {
+      "textures": "textures/items/stickgrenade"
+    },
+// Launcher
+    "panzerfaust": {
+      "textures": "textures/items/panzerfaust"
+    },
+// Guns
+    "sten": {
+      "textures": "textures/items/sten"
+    },
+    "c96": {
+      "textures": "textures/items/c96"
+    },
+    "mp40": {
+      "textures": "textures/items/mp40"
+    },
+    "luger": {
+      "textures": "textures/items/luger"
+    },
+    "ppsh": {
+      "textures": "textures/items/ppsh"
+    },
+    "mg08": {
+      "textures": "textures/machine/mg08_item"
+    },
+    "leeenfield": {
+      "textures": "textures/items/leeenfield"
+    },
+    "mosin": {
+      "textures": "textures/items/mosin"
+    },
+// Guns Reload
+     "stenmag": {
+      "textures": "textures/items/mag/sten"
+    },
+    "mp40mag": {
+      "textures": "textures/items/mag/mp40"
+    },
+    "c96mag": {
+      "textures": "textures/items/mag/c96"
+    },
+    "ppshmag": {
+      "textures": "textures/items/mag/ppsh"
+    },
+    "lugermag": {
+      "textures": "textures/items/mag/luger"
+    },
+    "mosinmag": {
+      "textures": "textures/items/mag/mosin"
+    },
+    "leeenfieldmag": {
+      "textures": "textures/items/mag/leeenfield"
+    },
+// Helmet
+    "m1helmet": {
+      "textures": "textures/items/helmet/m1helmet"
+     },
+     "brodie": {
+      "textures": "textures/items/helmet/brodie"
+     },
+     "stalhelmet": {
+      "textures": "textures/items/helmet/stalhelmet"
+      }
+   }
+}

@@ -1,0 +1,297 @@
+#include "PerfRenderer.h"
+#include "PerfTimer.h"
+
+#include "Mth.h"
+#include "../client/gui/Font.h"
+#include "../client/renderer/gles.h"
+#include "../client/renderer/Tesselator.h"
+#include "../client/Minecraft.h"
+
+// Frame-time breakdown set by the main loop / App::swapBuffers (main_win32.h).
+// Shown on the F3 overlay so a low framerate can be attributed: "work" = time
+// inside update() (tick + world render + GUI), "swap" = eglSwapBuffers cost.
+// If work ~= frame time the renderer is the bottleneck; if work is small but
+// the frame time is large, it's the frame cap / buffer swap instead.
+extern double g_diagUpdateMs;
+extern double g_diagSwapMs;
+
+PerfRenderer::PerfRenderer( Minecraft* mc, Font* font )
+:   _mc(mc),
+	_font(font),
+	_debugPath("root"),
+	frameTimePos(0),
+	lastTimer(-1)
+{
+	for (int i = 0; i < 512; ++i) {
+		frameTimes.push_back(0);
+		tickTimes.push_back(0);
+	}
+}
+
+void PerfRenderer::debugFpsMeterKeyPress( int key )
+{
+	std::vector<PerfTimer::ResultField> list = PerfTimer::getLog(_debugPath);
+	if (list.empty()) return;
+
+	PerfTimer::ResultField node = list[0];
+	list.erase(list.begin());
+	if (key == 0) {
+		if (node.name.length() > 0) {
+			int pos = _debugPath.rfind(".");
+			if (pos != std::string::npos) _debugPath = _debugPath.substr(0, pos);
+		}
+	} else {
+		key--;
+		if (key < (int)list.size() && list[key].name != "unspecified") {
+			if (_debugPath.length() > 0) _debugPath += ".";
+			_debugPath += list[key].name;
+		}
+	}
+}
+
+void PerfRenderer::renderFpsMeter( float tickTime )
+{
+	std::vector<PerfTimer::ResultField> list = PerfTimer::getLog(_debugPath);
+
+	long usPer60Fps = 1000000l / 60;
+	if (lastTimer == -1) {
+		lastTimer = getTimeS();
+	}
+	float now = getTimeS();
+	tickTimes[ frameTimePos ] = tickTime;
+	frameTimes[frameTimePos ] = now - lastTimer;
+	lastTimer = now;
+
+	if (++frameTimePos >= (int)frameTimes.size())
+		frameTimePos = 0;
+
+	// No PROFILER build (= no TIMER_PUSH data): there is nothing to drill into,
+	// but we can still show a real FPS/frame-time readout. The vanilla code
+	// returned early on an empty table, which is why F3 showed nothing.
+	if (list.empty()) {
+		float sum = 0;
+		int n = 0;
+		for (unsigned int i = 0; i < frameTimes.size(); ++i) {
+			if (frameTimes[i] > 0.0f) { sum += frameTimes[i]; ++n; }  // skip unwritten slots
+		}
+		float avg = (n > 0) ? (sum / (float)n) : 0.0f;
+		int fps = (avg > 1e-6f) ? (int)(1.0f / avg + 0.5f) : 0;
+
+		glClear(GL_DEPTH_BUFFER_BIT);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity2();
+#if defined(__APPLE__) && !defined(MACOS)
+		glOrthof(0, (GLfloat)_mc->width, (GLfloat)_mc->height, 0, -500.0f, 500.0f);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity2();
+#else
+		glOrthof(0, (GLfloat)_mc->width, (GLfloat)_mc->height, 0, 1000, 3000);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity2();
+		glTranslatef2(0, 0, -2000);
+#endif
+		glEnable(GL_BLEND);
+
+		char buf[160];
+		sprintf(buf, "%d fps  %.1f ms | work %.1f | swap %.1f",
+			fps, avg * 1000.0f, g_diagUpdateMs, g_diagSwapMs);
+		_font->drawShadow(buf, 4.0f, 4.0f, 0xffffff);
+
+		// Recent frame-time history as a tiny bar strip under the text
+		// (green = within 16.7ms budget, red = over): the game has no other
+		// built-in way to see hitches without the PROFILER pie chart.
+		glDisable2(GL_TEXTURE_2D);
+		Tesselator& t = Tesselator::instance;
+		t.begin(GL_QUADS);
+		const float barTopY = 18.0f;
+		const float barH = 40.0f;
+		const float maxUs = 33333.0f; // 30fps floor for the tallest bar
+		for (unsigned int i = 0; i < frameTimes.size(); ++i) {
+			float ft = frameTimes[i] * 1e6f; // us
+			float h = (ft > maxUs) ? barH : (ft / maxUs) * barH;
+			if (h < 0.5f) h = 0.5f;
+			bool over = ft > usPer60Fps;
+			t.color(over ? 0xffff4040 : 0xff40ff40);
+			t.vertex((float)i + 0.2f, barTopY + barH - h, 0);
+			t.vertex((float)i + 0.8f, barTopY + barH - h, 0);
+			t.vertex((float)i + 0.8f, barTopY + barH, 0);
+			t.vertex((float)i + 0.2f, barTopY + barH, 0);
+		}
+		t.draw();
+		glEnable2(GL_TEXTURE_2D);
+		glDisable(GL_BLEND);
+		return;
+	}
+
+	PerfTimer::ResultField node = list[0];
+	list.erase(list.begin());
+
+	glClear(GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_PROJECTION);
+	glEnable2(GL_COLOR_MATERIAL);
+	glLoadIdentity2();
+#if defined(__APPLE__) && !defined(MACOS)
+	glOrthof(0, (GLfloat)_mc->width, (GLfloat)_mc->height, 0, -500.0f, 500.0f);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity2();
+#else
+	glOrthof(0, (GLfloat)_mc->width, (GLfloat)_mc->height, 0, 1000, 3000);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity2();
+	glTranslatef2(0, 0, -2000);
+#endif
+
+	glLineWidth(1);
+	glDisable2(GL_TEXTURE_2D);
+	Tesselator& t = Tesselator::instance;
+
+	t.begin(GL_TRIANGLES);
+	int hh1 = (int) (usPer60Fps / 200);
+	float count = (float)frameTimes.size();
+	t.color(0x20000000);
+	t.vertex(0, (float)(_mc->height - hh1), 0);
+	t.vertex(0, (float)_mc->height, 0);
+	t.vertex(count, (float)_mc->height, 0);
+	t.vertex(count, (float)(_mc->height - hh1), 0);
+
+	t.color(0x20200000);
+	t.vertex(0, (float)(_mc->height - hh1 * 2), 0);
+	t.vertex(0, (float)(_mc->height - hh1), 0);
+	t.vertex(count, (float)(_mc->height - hh1), 0);
+	t.vertex(count, (float)(_mc->height - hh1 * 2), 0);
+
+	t.draw();
+	float totalTime = 0;
+	for (unsigned int i = 0; i < frameTimes.size(); i++) {
+		totalTime += frameTimes[i];
+	}
+	int hh = (int) (totalTime / 200 / frameTimes.size());
+	t.begin();
+	t.color(0x20400000);
+	t.vertex(0, (float)(_mc->height - hh), 0);
+	t.vertex(0, (float)_mc->height, 0);
+	t.vertex(count, (float)_mc->height, 0);
+	t.vertex(count, (float)(_mc->height - hh), 0);
+	t.draw();
+
+	t.begin(GL_LINES);
+	for (unsigned int i = 0; i < frameTimes.size(); i++) {
+		int col = ((i - frameTimePos) & (frameTimes.size() - 1)) * 255 / frameTimes.size();
+		int cc = col * col / 255;
+		cc = cc * cc / 255;
+		int cc2 = cc * cc / 255;
+		cc2 = cc2 * cc2 / 255;
+		if (frameTimes[i] > usPer60Fps) {
+			t.color(0xff000000 + cc * 65536);
+		} else {
+			t.color(0xff000000 + cc * 256);
+		}
+
+		float time = 10 * 1000 * frameTimes[i] / 200;
+		float time2 = 10 * 1000 * tickTimes[i] / 200;
+
+		t.vertex(i + 0.5f, _mc->height - time + 0.5f, 0);
+		t.vertex(i + 0.5f, _mc->height + 0.5f, 0);
+
+		// if (_mc->frameTimes[i]>nsPer60Fps) {
+		t.color(0xff000000 + cc * 65536 + cc * 256 + cc * 1);
+		// } else {
+		// t.color(0xff808080 + cc/2 * 256);
+		// }
+		t.vertex(i + 0.5f, _mc->height - time + 0.5f, 0);
+		t.vertex(i + 0.5f, _mc->height - (time - time2) + 0.5f, 0);
+	}
+	t.draw();
+	//t.end();
+
+	int r = 160;
+	int x = _mc->width - r - 10;
+	int y = _mc->height - r * 2;
+	glEnable(GL_BLEND);
+	t.begin();
+	t.color(0x000000, 200);
+	t.vertex(x - r * 1.1f, y - r * 0.6f - 16, 0);
+	t.vertex(x - r * 1.1f, y + r * 2.0f, 0);
+	t.vertex(x + r * 1.1f, y + r * 2.0f, 0);
+	t.vertex(x + r * 1.1f, y - r * 0.6f - 16, 0);
+	t.draw();
+	glDisable(GL_BLEND);
+
+	glDisable(GL_CULL_FACE);
+
+	float totalPercentage = 0;
+	for (unsigned int i = 0; i < list.size(); i++) {
+		PerfTimer::ResultField& result = list[i];
+
+		int steps = Mth::floor(result.percentage / 4) + 1;
+
+		t.begin(GL_TRIANGLE_FAN);
+		t.color(result.getColor());
+		t.vertex((float)x, (float)y, 0);
+		for (int j = steps; j >= 0; j--) {
+			float dir = (float) ((totalPercentage + (result.percentage * j / steps)) * Mth::PI * 2 / 100);
+			float xx = Mth::sin(dir) * r;
+			float yy = Mth::cos(dir) * r * 0.5f;
+			t.vertex(x + xx, y - yy, 0);
+			//LOGI("xy: %f, %f\n", x+xx, y - yy);
+		}
+		t.draw();
+		t.begin(GL_TRIANGLE_STRIP);
+		t.color((result.getColor() & 0xfefefe) >> 1);
+		for (int j = steps; j >= 0; j--) {
+			float dir = (float) ((totalPercentage + (result.percentage * j / steps)) * Mth::PI * 2 / 100);
+			float xx = Mth::sin(dir) * r;
+			float yy = Mth::cos(dir) * r * 0.5f;
+			t.vertex(x + xx, y - yy, 0);
+			t.vertex(x + xx, y - yy + 10, 0);
+		}
+		t.draw();
+
+		totalPercentage += result.percentage;
+	}
+
+	glEnable2(GL_TEXTURE_2D);
+
+	{
+		std::stringstream msg;
+		if (node.name != "unspecified") {
+			msg << "[0] ";
+		}
+		if (node.name.length() == 0) {
+			msg << "ROOT ";
+		} else {
+			msg << node.name << " ";
+		}
+		int col = 0xffffff;
+		_font->drawShadow(msg.str(), (float)(x - r), (float)(y - r / 2 - 16), col);
+		std::string msg2 = toPercentString(node.globalPercentage);
+		_font->drawShadow(msg2, (float)(x + r - _font->width(msg2)), (float)(y - r / 2 - 16), col);
+	}
+
+	for (unsigned int i = 0; i < list.size(); i++) {
+		PerfTimer::ResultField& result = list[i];
+		std::stringstream msg;
+		if (result.name != "unspecified") {
+			msg << "[" << (i + 1) << "] ";
+		} else {
+			msg << "[?] ";
+		}
+
+		msg << result.name;
+		float xx = (float)(x - r);
+		float yy = (float)(y + r/2 + i * 8 + 20);
+		_font->drawShadow(msg.str(), xx, yy, result.getColor());
+		std::string msg2 = toPercentString(result.percentage);
+		//LOGI("name: %s: perc: %f == %s @ %d, %d\n", msg.str().c_str(), result.percentage, msg2.c_str(), xx, yy);
+		_font->drawShadow(msg2, xx - 50 - _font->width(msg2), yy, result.getColor());
+		msg2 = toPercentString(result.globalPercentage);
+		_font->drawShadow(msg2, xx - _font->width(msg2), yy, result.getColor());
+	}
+}
+
+std::string PerfRenderer::toPercentString( float percentage )
+{
+	char buf[32] = {0};
+	sprintf(buf, "%3.2f%%", percentage);
+	return buf;
+}

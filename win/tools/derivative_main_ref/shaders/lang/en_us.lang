@@ -1,0 +1,444 @@
+﻿#--# INFO #--------------------------------------------------------------------#
+
+option.INFO=Derivative Main
+option.INFO.comment=Author: HaringPro. Copyright (C) 2024 HaringPro. All Rights Reserved
+value.INFO.0=§bDev
+value.INFO.1=§aBeta
+value.INFO.2=§dPreview
+value.INFO.3=§bRelease
+#option.Version=Version
+value.Version.0=§bX.X.X
+value.Version.1=§a1.9.X
+value.Version.2=§d2.0.0
+value.Version.3=§b2.0.1
+
+#--# Profiles #----------------------------------------------------------------#
+
+#profile.Default=§bDefault
+#profile.Low=Low
+#profile.Medium=§bMedium<Default>
+#profile.High=§6High
+#profile.Ultra=§cUltra
+#profile.EXTREME=§cExtreme
+
+#--# Screens #-----------------------------------------------------------------#
+
+#screen.World=World
+#screen.Water=Water
+#screen.Transparent=Transparent
+#screen.Plants=Plants
+
+#screen.Atmospherics=Atmospherics
+#screen.Clouds=Clouds
+screen.PC=Planar Clouds
+screen.VC=Volumetric Clouds
+screen.CS=§eCloud Shadows
+screen.CC=Volumetric Clouds(Clear days)
+screen.CR=Volumetric Clouds(Rainy days)
+screen.VRay=Volumetric Fog & Volumetric Light
+
+#screen.Lighting=Lighting
+screen.Directlighting=Direct Lighting
+screen.Indirectlighting=Indirect Lighting
+
+#screen.Shadows=Shadows
+
+#screen.Surface=Surface
+screen.POM=Parallax Occlusion Mapping
+#screen.Reflections=Reflections
+#screen.Emissive=Emissive
+screen.SubsurfaceScattering=Subsurface Scattering
+screen.SurfaceMisc=Misc
+
+screen.PostProcessing=Post-Processing
+screen.Tonemap=Tone Mapping
+#screen.Exposure=Exposure
+option.DoF=Depth of Field
+#screen.Bloom=Bloom
+screen.TAA=Temporal Anti-Aliasing
+screen.MotionBlur=Motion Blur
+#screen.Vignette=Vignette
+#screen.Color=Misc
+
+#--# World #-------------------------------------------------------------------#
+
+option.BORDER_FOG=§bBorder Fog
+option.BORDER_FOG_FALLOFF=Border Fog Falloff
+option.WHITE_WORLD=White World
+option.WHITE_WORLD.comment=Renders all opaque textures as full white.
+option.DARK_END=§8DarkEnd
+option.DARK_END.comment=The unique atmosphere during the battle with End Dragon:)
+option.RAYTRACED_REFRACTION=§eRaytraced Refraction
+option.REFRACTIVE_DISPERSION=§6Refraction Dispersion
+
+#--# Water #-------------------------------------------------------------------#
+
+option.WATER_WAVE_HEIGHT=Water Wave Height
+option.WATER_WATER_WAVE_SPEED=Water Wave Speed
+option.WATER_FOG_DENSITY=Water Fog Density
+option.WATER_FOG_DENSITY.comment=Density of water fog, higher values make the water more turbid.
+option.WATER_REFRACT_IOR=Refractive Index of Water
+option.WATER_CAUSTICS=§bWater Caustics
+option.WATER_CAUSTICS.comment=The dispersion of photons formed when light passes through water and is projected to the bottom of the water.
+option.WATER_PARALLAX=§eWater Parallax
+option.WATER_PARALLAX.comment=Parallax effect caused by water waves.
+
+#--# Transparent #-------------------------------------------------------------#
+
+option.GLASS_TEXTURE_ALPHA=Stained Glass Texture Alpha
+option.GLASS_TEXTURE_ALPHA.comment=Higher values result in sharper textures. Also affects ice, slime blocks and etc.
+option.GLASS_REFRACT_IOR=Refractive Index of Ice
+option.GLASS_REFRACT_IOR.comment=Also affects ice, slime blocks and etc.
+
+#--# Plants #------------------------------------------------------------------#
+
+option.PLANTS_WAVE_EFFECTS=§bPlants Wave Effects
+option.PLANTS_TOUCH_EFFECTS=§ePlants Touch effects
+option.PLANTS_TOUCH_EFFECTS.comment=Displacement of some plants when in contact with them.
+option.GENERAL_GRASS_FIX=General Grass Fix
+option.GENERAL_GRASS_FIX.comment=Detect if an unspecied block is a plant by normals.
+
+#--# Atmospherics #------------------------------------------------------------#
+
+option.VOLUMETRIC_CLOUDS=§6Volumetric Clouds
+option.PLANAR_CLOUDS=§6Planar Clouds
+option.LAND_ATMOSPHERIC_SCATTERING=§bLand Atmospheric Scattering
+option.SKY_GROUND=§6Sky Ground
+option.AURORA=§eAurora
+option.AURORA_STRENGTH=Aurora Strength
+option.STARS_INTENSITY=Stars Intensity
+option.STARS_COVERAGE=Stars Coverage
+option.SKY_RENDER_RESOLUTION=Skybox Render Resolution
+
+option.ATMOSPHERE_BOTTOM_ALTITUDE=Atmosphere Bottom Altitude
+option.ATMOSPHERE_TOP_ALTITUDE=Atmosphere Top Altitude
+prefix.ATMOSPHERE_BOTTOM_ALTITUDE=-
+
+#--# Clouds #------------------------------------------------------------------#
+
+option.TEMPORAL_UPSCALING=Temporal Upscaling
+suffix.TEMPORAL_UPSCALING=x
+option.MAX_BLENDED_FRAMES=Max blended frames
+
+option.FULL_AERIAL_PERSPECTIVE=§5Full Aerial Perspective
+
+option.CLOUDS_SPEED=§bClouds Speed
+option.CLOUD_CUMULUS_SUNLIGHT_SAMPLES=Sunlight Samples
+option.CLOUD_CUMULUS_SKYLIGHT_SAMPLES=Skylight Samples
+
+option.CLOUD_CUMULUS_CLEAR_ALTITUDE=Altitude
+option.CLOUD_CUMULUS_CLEAR_ALTITUDE.comment=Height of the volumetric cloudsData from sea level. Higher values cause the volumetric cloudsData to be generated at a higher altitude.
+suffix.CLOUD_CUMULUS_CLEAR_ALTITUDE=(x3)m
+option.CLOUD_CUMULUS_CLEAR_THICKNESS=Thickness
+option.CLOUD_CUMULUS_CLEAR_THICKNESS.comment=Vertical coverage of volumetric cloudsData. Higher values result in thicker volumetric cloudsData.
+suffix.CLOUD_CUMULUS_CLEAR_THICKNESS=m
+option.CLOUD_CUMULUS_CLEAR_COVERY=Coverage
+option.CLOUD_CUMULUS_CLEAR_COVERY.comment=Horizontal coverage of volumetric cloudsData. Higher values result in volumetric cloudsData with larger areas.
+option.CLOUD_CUMULUS_CLEAR_DENSITY=Density
+option.CLOUD_CUMULUS_CLEAR_DENSITY.comment=Density of surfaces of the volumetric cloudsData. Higher values result in clearer edges of the volumetric cloudsData.
+option.CLOUD_CUMULUS_CLEAR_SUNLIGHTING=Sunlight Intensity
+option.CLOUD_CUMULUS_CLEAR_SKYLIGHTING=Skylight Intensity
+option.CLOUD_CUMULUS_CLEAR_HIGHLIGHT_BRIGHTNESS=Diffused Highlight Brightness
+
+option.CLOUD_CUMULUS_RAIN_ALTITUDE=Altitude
+option.CLOUD_CUMULUS_RAIN_ALTITUDE.comment=Height of the volumetric cloudsData from sea level. Higher values cause the volumetric cloudsData to be generated at a higher altitude.
+suffix.CLOUD_CUMULUS_RAIN_ALTITUDE=(x3)m
+option.CLOUD_CUMULUS_RAIN_THICKNESS=Thickness
+option.CLOUD_CUMULUS_RAIN_THICKNESS.comment=Vertical coverage of volumetric cloudsData. Higher values result in thicker volumetric cloudsData.
+suffix.CLOUD_CUMULUS_RAIN_THICKNESS=m
+option.CLOUD_CUMULUS_RAIN_COVERY=Coverage
+option.CLOUD_CUMULUS_RAIN_COVERY.comment=Horizontal coverage of volumetric cloudsData. Higher values result in volumetric cloudsData with larger areas.
+option.CLOUD_CUMULUS_RAIN_DENSITY=Density
+option.CLOUD_CUMULUS_RAIN_DENSITY.comment=Density of surfaces of the volumetric cloudsData. Higher values result in clearer edges of the volumetric cloudsData.
+option.CLOUD_CUMULUS_RAIN_SUNLIGHTING=Sunlight Intensity
+option.CLOUD_CUMULUS_RAIN_SKYLIGHTING=Skylight Intensity
+option.CLOUD_CUMULUS_RAIN_HIGHLIGHT_BRIGHTNESS=Diffused Highlight Brightness
+
+option.CLOUD_CUMULUS_SAMPLES=Samples
+option.CLOUD_LOCAL_COVERAGE=§eLocal Coverage
+option.CLOUD_LOCAL_COVERAGE.comment=Adjusts the coverage of the volumetric cloudsData using noises. Random distribution in a large scale.
+
+option.CIRRUS_CLOUDS=§e§eCirrus Clouds
+value.CIRRUS_CLOUDS.0=Off
+value.CIRRUS_CLOUDS.1=Type 1
+value.CIRRUS_CLOUDS.2=Type 2
+option.CIRROCUMULUS_CLOUDS=§6Cirrocumulus Clouds
+option.CLOUDS_WEATHER=§aCloud Weather
+#option.WEATHER_CLOUDS=§bPlanar Cloud Type
+#value.WEATHER_CLOUDS.0=§eCirrus Only
+#value.WEATHER_CLOUDS.1=§6Cirrocumulus Only
+#value.WEATHER_CLOUDS.2=§aCirrus+Cirrocumulus(Weather System ON)
+
+option.CLOUD_PLANE_ALTITUDE=Altitude
+option.CLOUD_PLANE_ALTITUDE.comment=Height of the planar cloudsData from sea level. Higher values cause the planar cloudsData to be generated at a higher altitude.
+suffix.CLOUD_PLANE_ALTITUDE=m
+
+option.CLOUD_PLANE0_DENSITY=Density
+option.CLOUD_PLANE0_DENSITY.comment=The degree of clustering of plane cloudsData. Higher values cause plane cloudsData to cluster closer together.
+option.CLOUD_PLANE0_COVERY=Coverage
+option.CLOUD_PLANE0_COVERY.comment=Horizontal stretching of flat cloudsData. Higher values will make the plane cloud look wider.
+
+option.CLOUD_PLANE1_DENSITY=Density
+option.CLOUD_PLANE1_DENSITY.comment=The degree of clustering of plane cloudsData. Higher values cause plane cloudsData to cluster closer together.
+option.CLOUD_PLANE1_COVERY=Coverage
+option.CLOUD_PLANE1_COVERY.comment=Horizontal stretching of flat cloudsData. Higher values will make the plane cloud look wider.
+
+option.CLOUDS_SHADOW=§6Clouds Shadows
+option.PC_SHADOW=§aPlanar Clouds Shadows
+option.VC_SHADOW=§bVolumetric Clouds Shadows
+
+#--# Volumetric Ray #----------------------------------------------------------#
+
+option.VOLUMETRIC_FOG=§6Volumetric Fog
+option.FOG_TYPE=§bFog Type
+value.FOG_TYPE.0=No Noise(Low)
+value.FOG_TYPE.1=Cloudy Fog Lite(Medium)
+value.FOG_TYPE.2=Cloudy Fog(High)
+value.FOG_TYPE.3=Cloudy Sea(Ultra)
+option.RAY_STAINED_GLASS_TINT=§aStained Glass Tint
+option.VOLUMETRIC_FOG_DENSITY=Volumetric Fog Density
+option.VOLUMETRIC_FOG_FALLOFF=Volumetric Fog Falloff
+option.VOLUMETRIC_FOG_SAMPLES=Volumetric Fog & Volumetric Light Samples
+option.SEA_LEVEL=Sea Level
+option.FALLOFF_START=Falloff Start
+
+option.VOLUMETRIC_LIGHT=§6Volumetric Light
+option.VOLUMETRIC_LIGHT_STRENGTH=Volumetric Light Strength
+
+option.UW_VOLUMETRIC_LIGHT=§eUnderwater Volumetric Light
+option.UW_VOLUMETRIC_LIGHT_STRENGTH=Underwater Volumetric Light Strength
+option.UW_VOLUMETRIC_LIGHT_LENGTH=Underwater Volumetric Light Sampling Length
+
+#--# Shadow #------------------------------------------------------------------#
+
+option.SHADOW_MAP_BIAS=Shadow Map Bias
+option.shadowMapResolution=Shadow Map Resolution
+option.shadowMapResolution.comment=Smoothness of shadows. Higher values result in smoother shadows.
+suffix.shadowMapResolution=²
+
+option.shadowDistance=Shadow Render Distance
+value.shadowDistance.64.0=4
+value.shadowDistance.80.0=5
+value.shadowDistance.96.0=6
+value.shadowDistance.112.0=7
+value.shadowDistance.128.0=8
+value.shadowDistance.160.0=10
+value.shadowDistance.192.0=12
+value.shadowDistance.224.0=14
+value.shadowDistance.256.0=16
+value.shadowDistance.320.0=20
+value.shadowDistance.384.0=24
+value.shadowDistance.512.0=32
+value.shadowDistance.768.0=48
+value.shadowDistance.1024.0=64
+value.shadowDistance.2048.0=128
+value.shadowDistance.4096.0=256
+value.shadowDistance.8192.0=512
+value.shadowDistance.16384.0=1024
+value.shadowDistance.32768.0=2048
+value.shadowDistance.65536.0=4096
+suffix.shadowDistance=Chunks
+
+option.PCF_SAMPLES=Filtering Samples
+option.COLORED_SHADOWS=§bStained Glass Colored Shadows
+option.SCREEN_SPACE_SHADOWS=§dScreen Space Shadows
+option.SHADOW_BACKFACE_CULLING=§cShadow Backface Culling
+
+option.DH_SHADOW=§eDistant Horizons Shadowing
+
+#--# Lighting #----------------------------------------------------------------#
+
+option.BASIC_BRIGHTNESS=§bBasic Brightness
+option.BASIC_BRIGHTNESS_NETHER=§bNether Basic Brightness
+option.BASIC_BRIGHTNESS_END=§bEnd Basic Brightness
+option.sunPathRotation=Sun Path Rotation Angle
+suffix.sunPathRotation=°
+
+option.SUNLIGHT_INTENSITY=Sunlight Intensity
+option.SUNLIGHT_INTENSITY.comment=Intensity of Sunlight. Higher values will make the sunlight brighter
+option.SKYLIGHT_INTENSITY=Skylight Intensity
+option.SKYLIGHT_INTENSITY.comment=Intensity of Skylight. Higher values will make the skylight brighter
+option.NIGHT_BRIGHTNESS=Night Brightness
+option.NIGHT_BRIGHTNESS.comment=The atmosphere and illumination brightness at night. Higher values will make the night brighter
+
+option.TORCHLIGHT_BRIGHTNESS=Light Source Brightness
+option.TORCHLIGHT_BRIGHTNESS.comment=Brightness of light sources. Higher values will make the light brighter
+option.TORCHLIGHT_COLOR_TEMPERATURE=Light Source Color Temperatrue
+option.TORCHLIGHT_COLOR_TEMPERATURE.comment=Color temperatrue of light sources.
+suffix.TORCHLIGHT_COLOR_TEMPERATURE=K
+option.HELD_TORCHLIGHT=§eHandheld Lighting
+option.HELD_TORCHLIGHT.comment=Handheld light sources can light up around
+option.HELDLIGHT_BRIGHTNESS=Handheld Lighting Brightness
+
+option.SSAO_ENABLED=§bScreen Space Ambient Occlusion
+option.SSAO_ENABLED.comment=Adds soft shadow-y darkness around surface contact or intersection.
+option.SSAO_SAMPLES=Ambient Occlusion Samples
+option.SSAO_STRENGTH=Ambient Occlusion Strength
+
+option.GI_ENABLED=§6Global Illumination
+option.GI_ENABLED.comment=Enables RSM(Reflective Shadow Maps) global illumination. Simulates sunlight diffuse reflections.
+option.GI_SAMPLES=Global Illumination Samples
+option.GI_SAMPLES.comment=Global illumination quality. Higher values result in fewer artifacts.
+option.GI_RENDER_RESOLUTION=Global Illumination Render Resolution
+option.GI_RENDER_RESOLUTION.comment=Global illumination render resolution. Lower resolutions result in more significant aliasing.
+option.GI_RADIUS=Global Illumination Radius
+option.GI_RADIUS.comment=Radius of Global Illumination. Higher values will make it spread farther
+option.GI_BRIGHTNESS=Global Illumination Brightness
+
+#--# Surface #-----------------------------------------------------------------#
+
+option.ANISOTROPIC_FILTER=Anisotropic filter
+value.ANISOTROPIC_FILTER.0=Off
+value.ANISOTROPIC_FILTER.2=2x
+value.ANISOTROPIC_FILTER.4=4x
+value.ANISOTROPIC_FILTER.8=8x
+value.ANISOTROPIC_FILTER.16=16x
+value.ANISOTROPIC_FILTER.32=32x
+value.ANISOTROPIC_FILTER.64=64x
+
+option.TEXTURE_FORMAT=§bPBR Format
+value.TEXTURE_FORMAT.0=§elab PBR
+value.TEXTURE_FORMAT.1=§6SEUS PBR
+
+option.NORMAL_MAP=Normal Mapping
+option.NORMAL_MAP.comment=Pre option for effects such as parallax. Please enable this option when using resource packs with normal maps.
+option.SPECULAR_MAP=Specular Mapping
+option.SPECULAR_MAP.comment=Pre option for effects such as reflections. Please enable this option when using resource packs with specular maps.
+
+option.POROSITY=labPBR Porosity
+
+option.TEXTURE_RESOLUTION=Texture Resolution
+option.PARALLAX=§6Parallax
+option.PARALLAX.comment=When supported by the resource packs, adds bumpy details to surfaces. Results in different details at different viewing angles.
+option.SMOOTH_PARALLAX=§bSmooth Parallax
+option.PARALLAX_SHADOW=Parallax Shadows
+option.PARALLAX_SAMPLES=Parallax Samples
+option.PARALLAX_SAMPLES.comment=Adjusting this option could significantly improve parallax quality, but also impact performance by an important amount.
+option.PARALLAX_REFINEMENT=§aParallax Refinement
+option.PARALLAX_REFINEMENT_STEPS.comment=Enabling this option could improve parallax sampling with a slight impact to performance.
+option.PARALLAX_REFINEMENT_STEPS=Parallax Refinement Steps
+option.PARALLAX_DEPTH=Parallax Depth
+option.PARALLAX_DEPTH.comment=Parallax depth. Higher values will increase the height difference.
+option.PARALLAX_BASED_NORMAL=Parallax Based Normal
+option.PARALLAX_BASED_NORMAL.comment=Using normal generated from parallax data but not normalmap sample when there is parallax depth.
+
+option.SPECULAR_HIGHLIGHT_BRIGHTNESS=Specular Highlight Brightness
+option.ROUGH_REFLECTIONS=§eRough Reflections
+option.ROUGH_REFLECTIONS.comment=Enables roughness GGX VNDF. Severely impacts performance and causes a large amount of noise.
+option.ROUGH_REFLECTIONS_THRESHOLD=§eRough Reflections Threshold
+option.REFLECTION_FILTER=§6Reflection Filtering
+option.REFLECTION_FILTER.comment=Reduces the noise caused by roughness reflections.
+option.HQ_TRACING=§dHigh-Quality Tracing
+option.RAYTRACE_REFINEMENT=§aRay Tracing Refinement
+option.RAYTRACE_REFINEMENT_STEPS=Ray Tracing Refinement Steps
+option.RAIN_SPLASH_EFFECT=§aRain Splash Effects
+option.RAIN_SPLASH_EFFECT.comment=Circular waves formed by raindrops during rain.
+option.FORCE_WET_EFFECT=§bWet Effects During Rain
+option.FORCE_WET_EFFECT.comment=Simulation of surface water accumulation during rain.
+option.RAIN_SPLASH_BILATERAL=Bilateral Filtering for Rain Splash
+option.RAIN_SPLASH_BILATERAL.comment=Uses smooth raindrops instead of precise pixel raindrops.
+option.RAYTRACE_SAMPLES=Ray Tracing Samples
+option.RAYTRACE_SAMPLES.comment=Number of trace samples for screen space reflections.
+option.SPECULAR_TAIL_CLAMP=Tail Clamping
+option.SPECULAR_TAIL_CLAMP.comment=Clamps jitters in rough reflections.
+
+option.EMISSION_MODE=§6Emissive Mode
+value.EMISSION_MODE.0=Hardcoded
+value.EMISSION_MODE.1=Hardcoded+PBR
+value.EMISSION_MODE.2=PBR Only
+option.EMISSION_BRIGHTNESS=Emissive Brightness
+option.EMISSIVE_CURVE=Emissive Curve
+option.EMISSIVE_ORES=§eEmissive Ores
+option.EMISSIVE_SELECT_OUTLINE=§bEmissive Select Outline
+
+option.SUBSERFACE_SCATTERING_MODE=§bSubsurface Scattering Mode
+value.SUBSERFACE_SCATTERING_MODE.0=Hardcoded
+value.SUBSERFACE_SCATTERING_MODE.1=Hardcoded+labPBR
+value.SUBSERFACE_SCATTERING_MODE.2=labPBR Only
+option.SUBSERFACE_SCATTERING_STRENTGH=Subsurface Scattering Strength
+
+option.BOAT_LEAK_FIX=Boat Leak Fix
+option.BOAT_LEAK_FIX.comment=Possible issues with resource packs that have modified the boat's model.
+option.ENTITY_STATUS_COLOR=§cEntity Status Color
+option.ENTITY_STATUS_COLOR.comment=Color changes when entities are damaged or otherwise.
+option.ENTITY_EYES_LIGHTING=§6Glowing Entity Eyes
+option.ENTITY_EYES_LIGHTING.comment=Glowing effects of some entities and some entity's eyes.
+option.RAIN_SPARKLE=§bRain Sparkle
+option.RAIN_SPARKLE.comment=Simulation of the sparkling effect of raindrops.
+option.MOD_BLOCK_SUPPORT=§cMod Block Support
+
+#--# Post Processing #---------------------------------------------------------#
+
+option.CINEMATIC_EFFECT=§8Cinematic Effect
+
+option.DOF_ENABLED=§aDepth of Field
+option.DOF_MAGNIFICATION_CA=§6DoF Chromatic Dispersion
+option.FOCUS_MODE=Focus Mode
+value.FOCUS_MODE.0=Automatic
+value.FOCUS_MODE.1=Manual
+option.MANUAL_FOCUS=Manual Focus
+suffix.MANUAL_FOCUS=m
+option.DOF_SAMPLES=DoF Samples
+option.DOF_INTENSITY=DoF Intensity
+option.DOF_ANAMORPHIC_RATIO=DoF Anamorphic Ratio
+option.CAMERA_APERTURE=Camera Aperture
+option.FOCUSING_SPEED=Focusing Speed
+
+option.AUTO_EXPOSURE=§6Auto Exposure
+option.EXPOSURE_SPEED=Exposure Speed
+option.AUTO_EXPOSURE_LOD=Auto Exposure Lod
+option.AUTO_EXPOSURE_BIAS=Auto Exposure Bias
+#option.AUTO_EXPOSURE_VALUE=Auto Exposure Value
+option.MANUAL_EXPOSURE_VALUE=Manual Exposure Value
+
+option.TAA_ENABLED=§eTemporal Anti-Aliasing
+option.TAA_ENABLED.comment=Uses previous frames and jitters to filter the next frame to smooth the image and trys to eliminate aliasing. Could cause blurry images when moves too fast. When the render resolution is too low, it could cause significant jitters. When FPS is too low, it could result in longer time to get a smooth image.
+option.TAA_SHARPEN=§bTAA Sharpening
+option.TAA_SHARPNESS=TAA Sharpness
+
+option.MOTION_BLUR=§eMotion Blur
+option.MOTION_BLUR.comment=Applies blur to the image when moving the camera.
+option.MOTION_BLUR_SAMPLES=Motion Blur Samples
+option.MOTION_BLUR_STRENGTH=Motion Blur Strength
+
+option.BLOOM_ENABLED=§eBloom
+option.BLUR_SAMPLES=Blur Samples
+value.BLUR_SAMPLES.1=3x3
+value.BLUR_SAMPLES.2=5x5
+value.BLUR_SAMPLES.3=7x7
+value.BLUR_SAMPLES.4=9x9
+value.BLUR_SAMPLES.5=11x11
+value.BLUR_SAMPLES.6=13x13
+option.BLOOM_AMOUNT=Bloom Amount
+option.BLOOM_AMOUNT.comment=Glow on bright things. Higher values caused larger affected areas and more blurry images.
+option.BLOOMY_FOG=Bloomy Fog
+option.BLOOMY_FOG.comment=Uses bloom to simulate fog scattering.
+
+option.VIGNETTE_ENABLED=§eVignette
+option.VIGNETTE_STRENGTH=Vignette Strength
+
+option.CAS_ENABLED=§bFidelityFX CAS
+option.CAS_ENABLED.comment=AMD FidelityFX Contrast-Adaptive Sharpening. Sharpens the final image
+option.CAS_STRENGTH=CAS Strength
+
+option.TONEMAP=§6Tonemap
+value.TONEMAP.AgX_Minimal=AgX Minimal
+value.TONEMAP.AgX_Full=AgX Full
+
+option.PURKINJE_SHIFT=§aPurkinje Shift
+option.PURKINJE_SHIFT.comment=Purkinje Shift:. A change in peak sensitivity to light under changing illumination.
+
+option.COLOR_GRADING=Color-Grading
+option.COLOR_GRADING.comment=§bFront of the following adjustable options. Adjusts the color palette of the final image.
+option.BRIGHTNESS=Brightness
+option.CONTRAST=Contrast
+option.GAMMA=Gamma
+option.SATURATION=Saturation
+option.WHITE_BALANCE=White Balance
+suffix.WHITE_BALANCE=K
+
+#--# Debug #-------------------------------------------------------------------#
+
+value.DEBUG_NORMAL.0=Off
+value.DEBUG_NORMAL.1=View Normal
+value.DEBUG_NORMAL.2=World Normal

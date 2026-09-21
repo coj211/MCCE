@@ -1,0 +1,237 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.stickgrenade.first_person.hold": {
+			"loop": true,
+			"animation_length": 15,
+			"bones": {
+				"root": {
+					"rotation": [0, 180, 0],
+					"position": [0, 0, -2]
+				},
+				"rightArm": {
+					"rotation": {
+						"0.0": [-107.5, -10, 10],
+						"7.52": [-100, -10, 10],
+						"15.0": [-107.5, -10, 10]
+					},
+					"position": {
+						"0.0": [-1, -4, -3],
+						"7.52": [-1, -4, -3],
+						"15.0": [-1, -4, -3]
+					}
+				},
+				"rightArm1": {
+					"rotation": [-90, 0, 0],
+					"position": [1, -1, 0]
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [-90, 55, 15],
+						"7.52": [-90, 55, 0],
+						"15.0": [-90, 55, 15]
+					},
+					"position": {
+						"0.0": [5, -5, -8],
+						"7.52": [5, -6, -8],
+						"15.0": [5, -5, -8]
+					}
+				},
+				"tool": {
+					"position": [-2, 13, 11],
+					"scale": 0.2
+				},
+				"lee_enfield": {
+					"position": [5, -20, 0],
+					"scale": 1.3
+				},
+				"stickgrenade": {
+					"rotation": [90, 0, 0],
+					"position": [-6, -3, -3],
+					"scale": 0.3
+				},
+				"body": {
+					"position": [0, 0, -2]
+				}
+			}
+		},
+		"animation.stickgrenade.first_person.throw": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 1.04,
+			"bones": {
+				"root": {
+					"rotation": [0, 180, 0],
+					"position": [0, 0, -2]
+				},
+				"rightArm": {
+					"rotation": {
+						"0.0": [-107.5, -10, 10],
+						"0.24": [-92.5, -65, -42.5],
+						"0.4": [-92.5, -65, -42.5],
+						"0.44": [-92.5, -65, -50],
+						"0.56": [-92.5, -65, -42.5],
+						"0.64": [-92.5, -65, -42.5],
+						"0.76": [-107.5, -10, 10],
+						"0.88": [-137.5, -10, 10],
+						"1.04": [-107.5, -10, 10]
+					},
+					"position": {
+						"0.0": [-1, -4, -3],
+						"0.24": [-3, -3, -3],
+						"0.4": [-3, -3, -3],
+						"0.56": [-3, -3, -3],
+						"0.64": [-3, -3, -3],
+						"0.88": [-1, -4, -6],
+						"1.04": [-1, -4, -3]
+					}
+				},
+				"rightArm1": {
+					"rotation": [-90, 0, 0],
+					"position": [1, -1, 0]
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [-90, 55, 15],
+						"0.24": [-90, 67.5, 15],
+						"0.4": [-122.5, 22.5, -20],
+						"0.56": [-107.5, -40, -20],
+						"0.72": [-25, -40, -20],
+						"0.92": [-90, 55, 15]
+					},
+					"position": {
+						"0.0": [5, -5, -8],
+						"0.24": [5, -5, -8],
+						"0.4": [-1, -5, 0],
+						"0.56": [-1, -5, 0],
+						"0.72": [-1, -5, 0],
+						"0.92": [5, -5, -8]
+					}
+				},
+				"tool": {
+					"position": [-2, 13, 11],
+					"scale": 0.2
+				},
+				"lee_enfield": {
+					"position": [5, -20, 0],
+					"scale": 1.3
+				},
+				"stickgrenade": {
+					"rotation": {
+						"0.0": [90, 0, 0],
+						"0.24": [90, 0, 0],
+						"0.6": [90, 0, 0],
+						"0.72": [90, 0, 0]
+					},
+					"position": {
+						"0.0": [-6, -3, -3],
+						"0.24": [-6, -3, 0],
+						"0.6": [-6, -3, 0],
+						"0.72": [-6, -3, -3]
+					},
+					"scale": 0.3
+				},
+				"pin": {
+					"rotation": {
+						"0.4": [0, 0, 0],
+						"0.44": [37.5, -46.88, 0],
+						"0.56": [0, 42.5, 0],
+						"0.72": [52.5, 42.5, 0]
+					},
+					"position": {
+						"0.4": [0, 0, 0],
+						"0.44": [3.5, -3.25, -4.75],
+						"0.56": [14, -15, -19],
+						"0.72": [41, -15, -73]
+					},
+					"scale": {
+						"0.68": [1, 1, 1],
+						"0.72": [0, 0, 0]
+					}
+				},
+				"body": {
+					"position": [0, 0, -2]
+				}
+			}
+		},
+		"animation.stickgrenade.first_person.draw": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.36,
+			"bones": {
+				"root": {
+					"rotation": [0, 180, 0],
+					"position": [0, 0, -2]
+				},
+				"rightArm": {
+					"rotation": {
+						"0.0": [-7.5, -10, 10],
+						"0.24": [-117.5, -10, 10],
+						"0.36": [-107.5, -10, 10]
+					},
+					"position": {
+						"0.0": [-1, -4, -3],
+						"0.36": [-1, -4, -3]
+					}
+				},
+				"rightArm1": {
+					"rotation": [-90, 0, 0],
+					"position": [1, -1, 0]
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [-25, -7.5, 15],
+						"0.24": [-107.5, 62.5, 15],
+						"0.36": [-90, 55, 15]
+					},
+					"position": {
+						"0.0": [5, -5, -3],
+						"0.24": [5, -5, -8],
+						"0.36": [5, -5, -8]
+					}
+				},
+				"tool": {
+					"position": [-2, 13, 11],
+					"scale": 0.2
+				},
+				"lee_enfield": {
+					"position": [5, -20, 0],
+					"scale": 1.3
+				},
+				"stickgrenade": {
+					"rotation": [90, 0, 0],
+					"position": [-6, -3, -3],
+					"scale": 0.3
+				},
+				"body": {
+					"position": [0, 0, -2]
+				}
+			}
+		},
+		"animation.stickgrenade.third_person": {
+			"loop": true,
+			"bones": {
+				"leftArm": {
+					"rotation": ["query.target_x_rotation - 90.0 - math.sin(query.life_time * 76.8) * 2.865 - this", "query.target_y_rotation + 28.65", "-(math.cos(query.life_time * 103.2) * 2.865) - 2.865"]
+				},
+				"rightArm": {
+					"rotation": ["query.target_x_rotation - 90.0 + math.sin(query.life_time * 76.8) * 2.865 - this", "query.target_y_rotation - 5.73", "(math.cos(query.life_time * 103.2) * 2.865) + 2.865"]
+				},
+				"rightArm1": {
+					"rotation": ["query.target_x_rotation - 90.0 + math.sin(query.life_time * 76.8) * 2.865 - this", "query.target_y_rotation - 5.73", "(math.cos(query.life_time * 103.2) * 2.865) + 2.865"]
+				},
+				"tool": {
+					"position": [-2, 14, 12],
+					"scale": 0.2
+				},
+				"lee_enfield": {
+					"position": [-3, 19, -7],
+					"scale": 0.8
+				},
+				"stickgrenade": {
+					"rotation": [90, 0, 0],
+					"position": [-6, -3, -3],
+					"scale": 0.2
+				}
+			}
+		}
+	}
+}

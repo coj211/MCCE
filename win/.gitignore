@@ -1,0 +1,68 @@
+# macOS / Finder
+.DS_Store
+**/.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# MSVC build outputs
+handheld/project/win32_gl/Release/
+handheld/project/win32_gl/Debug/
+handheld/project/win32_gl/x64/
+handheld/project/win32_gl/*.user
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.dll
+
+# libpng vendored extras (not part of the build)
+handheld/thirdparty/libpng-1.6.40/contrib/
+handheld/thirdparty/libpng-1.6.40/pnglibconf.h
+handheld/thirdparty/libpng-1.6.40/projects/
+handheld/thirdparty/libpng-1.6.40/tests/
+handheld/thirdparty/libpng-1.6.40/makefile*
+
+# runtime worlds / saves copied locally
+handheld/project/win32_gl/games/
+
+# Deployed runtime (build outputs and per-machine state)
+MinecraftWin32_GL.exe
+OpenAL32.dll
+glew32.dll
+libEGL.dll
+libgles_cm.dll
+libpng12.dll
+libpng3.dll
+zlib1.dll
+game_out.log
+games/
+options.txt
+modsdimstate_world*.txt
+data/
+mods/modlist.json
+mods/*.state
+
+
+# ai_bridge 运行时文件
+mods/ai_bridge/config.json
+mods/ai_bridge/request.txt
+mods/ai_bridge/response.txt
+
+# 模组归档/临时目录(非版本内容)
+mods_archive/
+mods/新建文件夹/
+*.zip.off
+skins/
+*.pyc
